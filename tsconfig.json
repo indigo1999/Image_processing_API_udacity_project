@@ -3,7 +3,8 @@
   "compilerOptions": {
     // File Layout
     // "rootDir": "./src",
-    // "outDir": "./dist",
+    "outDir": "./build",
+    "allowJs": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -42,6 +43,6 @@
     "skipLibCheck": true,
     
   },
-  "include": ["src"],
-  "exclude": []
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules","images","./dist"]
 }
