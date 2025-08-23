@@ -1,6 +1,10 @@
 
 import express from 'express';
 
+import routes from "./routes/index.ts"
+
+
+
 const app = express();
 const port = 3000//process.env.DEV_PORT_EXERCISE
 
@@ -9,7 +13,8 @@ app.listen(port, () => {
     console.log(`Server started at 127.0.0.1:${port}`)
 })
 
-
+//
+app.use('/api',routes)
 
 ///GET
 app.get('/api', (request , response) => {
