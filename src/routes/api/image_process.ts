@@ -2,8 +2,8 @@ import express from 'express';
 import { promises as fs_promises } from 'fs'
 import path from 'path'
 
-const app = express();
 const image_routes = express.Router();
+import sharp from 'sharp';
 
 
 image_routes.get('/',(request,response) => {
@@ -12,17 +12,25 @@ image_routes.get('/',(request,response) => {
     const width : number = parseInt(request.query.width?.toString()!)
     const height : number = parseInt(request.query.height?.toString()!)
 
+    console.log(filename,width,height)
     // response.writeHead(200, {"content-type" : "image/jpg"})
     // const readed_file = read_image_file(filename)?.toString()!
     // const decoded_64 = decode_base64(readed_file)
     
     // response.end(decoded_64)
     const image_folder_path = "images"
-    const image_path = path.join(filename+'.jpg')
-    response.sendFile(image_path,{root : image_folder_path},(error?) => {
-        console.log("Error : "+error)
+    const image_path_old = path.join(image_folder_path,filename+'.jpg')
+    const image_path_new = path.join(image_folder_path,filename+'.png')
+    // response.sendFile(image_path,{root : image_folder_path},(error?) => {
+    //     console.log("Error : "+error)
+    // })
+    sharp(image_path_old).resize({ width : width , height : height}).toFile(image_path_new).then(() => {
+        response.sendFile(filename+".png",{root : image_folder_path}, (error?) => {
+        console.log(error)
     })
-
+    })
+    // response.send(image_path)
+    
     //response.send("Image route");
 });
 
