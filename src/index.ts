@@ -1,5 +1,5 @@
 
-import express, { request, response } from 'express';
+import express from 'express';
 
 const app = express();
 const port = 3000//process.env.DEV_PORT_EXERCISE
