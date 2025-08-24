@@ -21,7 +21,7 @@ image_routes.get('/',async (request,response) => {
         response.status(400).send("No filename input")
     }
     
-    if ( (isNaN(width_query) || width_query <= 0) && (isNaN(height_query) || height_query <= 0) ) {
+    if ( (isNaN(width_query) || width_query <= 0) || (isNaN(height_query) || height_query <= 0) ) {
         response.status(400).send('Invalid width and height parameter.');
     } else {
         resize_image(filename,width_query,height_query,response)
