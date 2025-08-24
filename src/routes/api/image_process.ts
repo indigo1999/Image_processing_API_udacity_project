@@ -1,58 +1,50 @@
-import express from 'express';
+import { error } from 'console';
+import express, { Response } from 'express';
 import { promises as fs_promises } from 'fs'
 import path from 'path'
-
-const image_routes = express.Router();
 import sharp from 'sharp';
 
+const image_routes = express.Router();
 
-image_routes.get('/',(request,response) => {
 
-    const filename : string = request.query.filename?.toString()!
-    const width : number = parseInt(request.query.width?.toString()!)
-    const height : number = parseInt(request.query.height?.toString()!)
+image_routes.get('/',async (request,response) => {
 
-    console.log(filename,width,height)
-    // response.writeHead(200, {"content-type" : "image/jpg"})
-    // const readed_file = read_image_file(filename)?.toString()!
-    // const decoded_64 = decode_base64(readed_file)
+    let filename : string = ""//request.query.filename?.toString()!
+
+    if(request.query.filename && request.query.filename?.toString()!.length != 0) {
+        filename = request.query.filename?.toString()!
+    } else {
+        response.status(400).send("No filename input")
+    }
+    let width_query : number = parseInt(request.query.width?.toString()!,10)
+    let height_query : number = parseInt(request.query.height?.toString()!,10)
+
+
+    try {
+        if ( (isNaN(width_query) || width_query <= 0) && (isNaN(height_query) || height_query <= 0) ) {
+            response.status(400).send('Invalid width and height parameter.');
+        } else {
+           resize_image(filename,width_query,height_query,response)
+        }
+    } catch (error) {
+        response.status(400).send('Invalid width parameter.');
+    }       
     
-    // response.end(decoded_64)
+});
+
+const resize_image = async(filename : string,width : number,height : number,response : Response) => {
     const image_folder_path = "images"
     const image_path_old = path.join(image_folder_path,filename+'.jpg')
     const image_path_new = path.join(image_folder_path,filename+'.png')
-    // response.sendFile(image_path,{root : image_folder_path},(error?) => {
-    //     console.log("Error : "+error)
-    // })
-    sharp(image_path_old).resize({ width : width , height : height}).toFile(image_path_new).then(() => {
-        response.sendFile(filename+".png",{root : image_folder_path}, (error?) => {
-        console.log(error)
-    })
-    })
-    // response.send(image_path)
     
-    //response.send("Image route");
-});
-
-// const read_image_file = async (filename : string) : Promise<string> => {
-//     const image_folder_path = "images"
-//     const image_path = path.join(image_folder_path,'/',filename+'.jpg')
-    
-//     try {
-//         const data = await fs_promises.readFile(image_path,'base64') as string
-//         return data
-//     } catch (error) {
-//         console.log(error)
-//         return error as string
-//     }
-// }
-
-// const decode_base64 = (base64_string : string) => {
-//     const buffer = Buffer.from(base64_string, 'base64');
-//   // Convert the Buffer back to a string, specifying 'utf-8' encoding for text
-//     const decoded = buffer.toString('utf-8');
-//     return decoded;
-// }
+    await fs_promises.access(image_path_old, fs_promises.constants.F_OK).then(() => {
+                sharp(image_path_old).resize({ width : width , height : height}).toFile(image_path_new).then(() => {
+                        response
+                        .status(200)
+                        .sendFile(filename+".png",{root : image_folder_path})
+                })
+            })
+}
 
 
 export default image_routes;

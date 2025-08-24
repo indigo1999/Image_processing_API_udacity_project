@@ -18,9 +18,9 @@ app.listen(port, () => {
 app.use('/api',routes)
 
 ///GET
-app.get('/api', (request , response) => {
-    response.send("Hello , World!");
-})
+// app.get('/api', (request , response) => {
+//     response.send("Hello , World!");
+// })
 
 
 
