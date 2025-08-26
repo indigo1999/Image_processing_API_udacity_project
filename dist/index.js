@@ -25,4 +25,4 @@ const hello = (name) => {
     console.log(port);
 };
 hello("Game");
-exports.default = myFunc;
+exports.default = { myFunc, app };

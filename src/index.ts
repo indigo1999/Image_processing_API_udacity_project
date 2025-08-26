@@ -33,7 +33,7 @@ const hello = (name : string) : void => {
 
 hello("Game")
 
-export default myFunc;
+export default { myFunc , app };
 
 
 
