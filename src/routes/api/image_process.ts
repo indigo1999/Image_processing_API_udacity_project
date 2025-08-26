@@ -17,11 +17,11 @@ image_routes.get('/',async (request,response) => {
     if(request.query.filename && request.query.filename?.toString()!.length != 0) {
         filename = request.query.filename?.toString()!
     } else {
-        response.status(400).send("No filename input")
+        return response.status(400).send("No filename input")
     }
     
     if ( (isNaN(width_query) || width_query <= 0) || (isNaN(height_query) || height_query <= 0) ) {
-        response.status(400).send('Invalid width and height parameter.');
+        return response.status(400).send('Invalid width and height parameter.');
     } else {
         resize_image(filename,width_query,height_query,response)
     }
@@ -37,9 +37,9 @@ const resize_image = async(filename : string,width : number,height : number,resp
     try {
             await fs_promises.access(image_path_old, fs_promises.constants.F_OK).then(() => {
                 sharp(image_path_old).resize({ width : width , height : height}).toFile(image_path_new).then(() => {
-                        response
-                        .status(200)
-                        .sendFile(filename+".png",{root : image_folder_path})
+                        return    response
+                                    .status(200)
+                                    .sendFile(filename+".png",{root : image_folder_path})
                 })
             })
     } catch (error) {

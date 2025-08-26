@@ -19,8 +19,9 @@
     "sharp": "^0.34.3"
   },
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon dist/index.js",
     "build": "npx tsc",
-    "jasmine": "jasmine"
+    "jasmine": "jasmine",
+    "test": "npm run build && npm start && npm run jasmine"
   }
 }

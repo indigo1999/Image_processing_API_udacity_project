@@ -15,3 +15,13 @@ describe("Test endpoint response", () => {
         expect(response.status).toBe(200);
     });
 });
+describe("Test endpoint response image", () => {
+    it("gets the api endpoint image", async () => {
+        const temp_width = 900;
+        const temp_height = 900;
+        const temp_filename = "fjord";
+        const query_string = `filename=${temp_filename}&width=${temp_width}&height=${temp_height}`;
+        const response = await request.get(`/api/image_process?${query_string}`);
+        expect(response.status).toBe(200);
+    });
+});
