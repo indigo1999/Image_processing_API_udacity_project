@@ -1,7 +1,7 @@
 
 import express from 'express';
 
-import routes from "./routes/index.ts"
+import routes from "./routes/index"
 
 
 
@@ -22,7 +22,9 @@ app.use('/api',routes)
 //     response.send("Hello , World!");
 // })
 
-
+const myFunc = (num : number) : number => {
+    return num * num
+}
 
 const hello = (name : string) : void => {
     console.log(`Glad to hear your news ${name} .`)
@@ -31,6 +33,7 @@ const hello = (name : string) : void => {
 
 hello("Game")
 
+export default myFunc;
 
 
 

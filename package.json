@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/jasmine": "^5.1.9",
     "@types/node": "^24.3.0",
     "eslint": "^9.33.0",
     "jasmine": "^5.9.0",
@@ -12,10 +13,12 @@
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "sharp": "^0.34.3"
   },
   "scripts": {
-    "start": "nodemon build/.",
-    "build": "npx tsc"
+    "start": "nodemon src/index.ts",
+    "build": "npx tsc",
+    "jasmine" : "jasmine"
   }
 }

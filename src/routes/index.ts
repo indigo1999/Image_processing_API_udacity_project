@@ -1,8 +1,8 @@
 import express from 'express';
 
-import students from "./api/students.ts"
-import teachers from "./api/teachers.ts"
-import image_process from "./api/image_process.ts"
+import students from "./api/students.js"
+import teachers from "./api/teachers.js"
+import image_process from "./api/image_process.js"
 
 const routes = express.Router();
 
