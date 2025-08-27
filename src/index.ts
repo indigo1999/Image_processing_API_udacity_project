@@ -27,8 +27,10 @@ const myFunc = (num : number) : number => {
 }
 
 const hello = (name : string) : void => {
-    console.log(`Glad to hear your news ${name} .`)
+    const emancipation_text = " restart every game LOL and exit from every game and clear all historical data in every dark web / deep web game"
+    console.log(`Glad to hear your new ${name}.` + emancipation_text)
     console.log(port)
+    console.log("EXIT WITH FREEDOM TO...CANADA AND ETC. SUCCESS!")
 }
 
 hello("Game")

@@ -4,10 +4,12 @@ import { promises as fs_promises } from 'fs'
 import path from 'path'
 import sharp from 'sharp';
 
+import logger from "../../middlewares/logger.js"
+
 const image_routes = express.Router();
 
 
-image_routes.get('/',async (request,response) => {
+image_routes.get('/', logger ,async (request,response) => {
 
     let filename : string = ""//request.query.filename?.toString()!
     let width_query : number = parseInt(request.query.width?.toString()!,10)
