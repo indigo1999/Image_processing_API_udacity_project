@@ -9,7 +9,7 @@ import logger from "../../middlewares/logger.js"
 const image_routes = express.Router();
 
 
-image_routes.get('/', logger ,async (request,response) => {
+image_routes.get('/image_query', logger ,async (request,response) => {
 
     let filename : string = ""//request.query.filename?.toString()!
     let width_query : number = parseInt(request.query.width?.toString()!,10)
@@ -39,9 +39,7 @@ const resize_image = async(filename : string,width : number,height : number,resp
     try {
             await fs_promises.access(image_path_old, fs_promises.constants.F_OK).then(() => {
                 sharp(image_path_old).resize({ width : width , height : height}).toFile(image_path_new).then(() => {
-                        return    response
-                                    .status(200)
-                                    .sendFile(filename+".png",{root : image_folder_path})
+                        return    response.status(200).sendFile(filename+".png",{root : image_folder_path})
                 })
             })
     } catch (error) {

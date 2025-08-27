@@ -9,7 +9,7 @@ const path_1 = __importDefault(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
 const logger_js_1 = __importDefault(require("../../middlewares/logger.js"));
 const image_routes = express_1.default.Router();
-image_routes.get('/', logger_js_1.default, async (request, response) => {
+image_routes.get('/image_query', logger_js_1.default, async (request, response) => {
     let filename = ""; //request.query.filename?.toString()!
     let width_query = parseInt(request.query.width?.toString(), 10);
     let height_query = parseInt(request.query.height?.toString(), 10);
@@ -33,9 +33,7 @@ const resize_image = async (filename, width, height, response) => {
     try {
         await fs_1.promises.access(image_path_old, fs_1.promises.constants.F_OK).then(() => {
             (0, sharp_1.default)(image_path_old).resize({ width: width, height: height }).toFile(image_path_new).then(() => {
-                return response
-                    .status(200)
-                    .sendFile(filename + ".png", { root: image_folder_path });
+                return response.status(200).sendFile(filename + ".png", { root: image_folder_path });
             });
         });
     }
