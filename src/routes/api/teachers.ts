@@ -1,14 +1,9 @@
-import express from 'express';
-
+import express from "express";
 
 const teachers = express.Router();
 
-
-teachers.get('/',(request,response) => {
-    response.send("Teachers route");
+teachers.get("/", (request, response) => {
+  response.send("Teachers route");
 });
 
 export default teachers;
-
-
-

@@ -12,7 +12,7 @@ app.listen(port, () => {
     console.log(`Server started at 127.0.0.1:${port}`);
 });
 //
-app.use('/api', index_1.default);
+app.use("/api", index_1.default);
 ///GET
 // app.get('/api', (request , response) => {
 //     response.send("Hello , World!");

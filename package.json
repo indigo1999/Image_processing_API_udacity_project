@@ -1,16 +1,23 @@
 {
   "devDependencies": {
+    "@eslint/js": "^9.34.0",
     "@types/express": "^5.0.3",
     "@types/jasmine": "^5.1.9",
     "@types/node": "^24.3.0",
     "@types/supertest": "^6.0.3",
-    "eslint": "^9.33.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.3.0",
     "jasmine": "^5.9.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
@@ -22,6 +29,8 @@
     "start": "nodemon dist/index.js",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "test": "npm run build && npm start && npm run jasmine"
+    "test": "npm run build && npm start && npm run jasmine",
+    "lint": "npx eslint 'src/**/*' --fix",
+    "format": "npx prettier --write 'src/**/*'"
   }
 }

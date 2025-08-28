@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const index_1 = __importDefault(require("../index"));
-it('expect myFunc(5) to equal 25', () => {
+it("expect myFunc(5) to equal 25", () => {
     expect(index_1.default.myFunc(5)).toEqual(25);
 });
 const request = (0, supertest_1.default)(index_1.default.app);
