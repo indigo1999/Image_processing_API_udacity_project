@@ -8,8 +8,9 @@ const path_1 = __importDefault(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
 const resize_image = async (filename, width, height, response) => {
     const image_folder_path = "images";
+    const image_folder_path_new = "images_resized";
     const image_path_old = path_1.default.join(image_folder_path, filename + ".jpg");
-    const image_path_new = path_1.default.join(image_folder_path, filename + ".png");
+    const image_path_new = path_1.default.join(image_folder_path_new, filename + ".png");
     try {
         await fs_1.promises
             .access(image_path_old, fs_1.promises.constants.F_OK)
@@ -20,7 +21,7 @@ const resize_image = async (filename, width, height, response) => {
                 .then(() => {
                 return response
                     .status(200)
-                    .sendFile(filename + ".png", { root: image_folder_path });
+                    .sendFile(filename + ".png", { root: image_folder_path_new });
             });
         });
     }

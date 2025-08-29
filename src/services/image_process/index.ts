@@ -10,8 +10,9 @@ const resize_image = async (
   response: Response,
 ): Promise<void> => {
   const image_folder_path = "images";
+  const image_folder_path_new = "images_resized";
   const image_path_old = path.join(image_folder_path, filename + ".jpg");
-  const image_path_new = path.join(image_folder_path, filename + ".png");
+  const image_path_new = path.join(image_folder_path_new, filename + ".png");
 
   try {
     await fs_promises
@@ -23,7 +24,7 @@ const resize_image = async (
           .then(() => {
             return response
               .status(200)
-              .sendFile(filename + ".png", { root: image_folder_path });
+              .sendFile(filename + ".png", { root: image_folder_path_new });
           });
       });
   } catch (error) {
