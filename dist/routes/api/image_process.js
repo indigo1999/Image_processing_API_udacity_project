@@ -7,10 +7,11 @@ const express_1 = __importDefault(require("express"));
 // import { promises as fs_promises } from "fs";
 // import path from "path";
 // import sharp from "sharp";
-const logger_js_1 = __importDefault(require("../../middlewares/logger.js"));
+const image_process_js_1 = __importDefault(require("../../middlewares/image_process.js"));
 const index_js_1 = __importDefault(require("../../services/image_process/index.js"));
 const image_routes = express_1.default.Router();
-image_routes.get("/image_query", logger_js_1.default, async (request, response) => {
+image_routes.get("/image_query", image_process_js_1.default, async (request, response) => {
+    console.log("Fetching for new data.....");
     const filename = request.query.filename; //request.query.filename?.toString()!
     const width_input = request.query.width;
     const height_input = request.query.height;
@@ -29,6 +30,7 @@ image_routes.get("/image_query", logger_js_1.default, async (request, response) 
         return response.status(400).send("Invalid width and height parameter.");
     }
     else {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         (0, index_js_1.default)(filename, width_query, height_query, response);
     }
 });
