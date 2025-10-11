@@ -20,11 +20,4 @@ app.use("/api", index_1.default);
 const myFunc = (num) => {
     return num * num;
 };
-const hello = (name) => {
-    const emancipation_text = " restart every game LOL and exit from every game and clear all historical data in every dark web / deep web game";
-    console.log(`Glad to hear your new ${name}.` + emancipation_text);
-    console.log(port);
-    console.log("EXIT WITH FREEDOM TO...CANADA AND ETC. SUCCESS!");
-};
-hello("Game");
 exports.default = { myFunc, app };

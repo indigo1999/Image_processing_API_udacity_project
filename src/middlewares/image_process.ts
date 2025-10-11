@@ -24,3 +24,5 @@ function image_process_cache(req: Request, res: Response, next: NextFunction) {
 }
 
 export default image_process_cache;
+
+// Credit : ChatGPT

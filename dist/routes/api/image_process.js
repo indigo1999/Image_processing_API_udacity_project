@@ -9,6 +9,7 @@ const express_1 = __importDefault(require("express"));
 // import sharp from "sharp";
 const image_process_js_1 = __importDefault(require("../../middlewares/image_process.js"));
 const index_js_1 = __importDefault(require("../../services/image_process/index.js"));
+// import { resolve } from "path";
 const image_routes = express_1.default.Router();
 image_routes.get("/image_query", image_process_js_1.default, async (request, response) => {
     console.log("Fetching for new data.....");
@@ -34,31 +35,4 @@ image_routes.get("/image_query", image_process_js_1.default, async (request, res
         (0, index_js_1.default)(filename, width_query, height_query, response);
     }
 });
-// const resize_image = async (
-//   filename: string,
-//   width: number,
-//   height: number,
-//   response: Response,
-// ): Promise<void> => {
-//   const image_folder_path = "images";
-//   const image_path_old = path.join(image_folder_path, filename + ".jpg");
-//   const image_path_new = path.join(image_folder_path, filename + ".png");
-//   try {
-//     await fs_promises
-//       .access(image_path_old, fs_promises.constants.F_OK)
-//       .then(() => {
-//         sharp(image_path_old)
-//           .resize({ width: width, height: height })
-//           .toFile(image_path_new)
-//           .then(() => {
-//             return response
-//               .status(200)
-//               .sendFile(filename + ".png", { root: image_folder_path });
-//           });
-//       });
-//   } catch (error) {
-//     response.status(404).send("Filename not found");
-//     console.error(error);
-//   }
-// };
 exports.default = image_routes;
